@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <title>Fake DiggBar</title> 
+  <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js'></script>
+  <script type='text/javascript' src='underscore.js'></script>
+  <script type='text/javascript' src='protoquery.js'></script>
+  <script type='text/javascript'>
+
+
+    $(function() {
+        $('img').each(function(i, el) {
+          //console.log(el);
+        });
+
+        new Ajax.Request('/protoquery/demo.html', {
+          onComplete: function(response) {
+            //console.log(response.responseText);
+          }
+        });
+    });
+     
+  </script>
+  <style type="text/css" media="all"> 
+    #slideshow img:first-child {
+      display: none;
+    }
+
+    #slideshow img {
+      display: none;
+    }
+  </style> 
+</head> 
+<body> 
+  <div id='slideshow'>
+    <img src='http://weblogs.hitwise.com/robin-goad/lolcats.png'>
+    <img src='http://icanhascheezburger.files.wordpress.com/2007/10/lolcats-funny-pictures-surprise-cannibalism.jpg'>
+    <img src='http://icanhascheezburger.files.wordpress.com/2007/10/lolcats-funny-pictures-surprise-cannibalism.jpg'>
+    <img src='http://local-static3.forum-files.fobby.net/forum_attachments/0016/9838/lolcat_what.jpg'>
+    <img src='http://newsimg.ngfiles.com/80000/80323_Lolcat4.jpg'>
+  </div>
+</body> 
+
+</html>
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <title>Fake DiggBar</title> 
+  <script type='text/javascript' src='prototype.js'></script>
+  <style type="text/css" media="all"> 
+    #slideshow img:first-child {
+      display: block;
+    }
+
+    #slideshow img {
+      display: none;
+    }
+  </style> 
+  
+  <script type='text/javascript'>
+
+    $ = (function(old$) {
+      return function(element) {
+        element = typeof element == 'string' ? element.replace('#', '') : element;
+        return old$(element);
+      }
+    })($);
+
+    $(document).observe('dom:loaded', function() {
+      console.log($('#slideshow').hide());
+    });
+     
+  </script>
+</head> 
+<body> 
+  <div id='slideshow'>
+    <img src='http://weblogs.hitwise.com/robin-goad/lolcats.png'>
+    <img src='http://icanhascheezburger.files.wordpress.com/2007/10/lolcats-funny-pictures-surprise-cannibalism.jpg'>
+    <img src='http://icanhascheezburger.files.wordpress.com/2007/10/lolcats-funny-pictures-surprise-cannibalism.jpg'>
+    <img src='http://local-static3.forum-files.fobby.net/forum_attachments/0016/9838/lolcat_what.jpg'>
+    <img src='http://newsimg.ngfiles.com/80000/80323_Lolcat4.jpg'>
+  </div>
+</body> 
+
+</html>
+
+
