@@ -95,7 +95,6 @@ jQuery.extend(Control.Modal, {
       };
     });
   }
-  
 
   $.extend(Function.prototype, {
     argumentNames: function() {
