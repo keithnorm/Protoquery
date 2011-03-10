@@ -4,12 +4,19 @@
   <title>Fake DiggBar</title> 
   <script type='text/javascript' src='prototype.js'></script>
   <style type="text/css" media="all"> 
-    #slideshow img:first-child {
-      display: block;
+    body {
+      background-color: #B8B8AF;
+      font-family: Helvetica;
+    }
+    #container {
+      width: 500px;
+      margin: 0 auto;
     }
 
-    #slideshow img {
-      display: none;
+    .example {
+      padding: 20px;
+      background: #f1f1f1;
+      margin-bottom: 20px;
     }
   </style> 
   
@@ -22,19 +29,29 @@
       }
     })($);
 
-    $(document).observe('dom:loaded', function() {
-      console.log($('#slideshow').hide());
-    });
-     
   </script>
 </head> 
 <body> 
-  <div id='slideshow'>
-    <img src='http://weblogs.hitwise.com/robin-goad/lolcats.png'>
-    <img src='http://icanhascheezburger.files.wordpress.com/2007/10/lolcats-funny-pictures-surprise-cannibalism.jpg'>
-    <img src='http://icanhascheezburger.files.wordpress.com/2007/10/lolcats-funny-pictures-surprise-cannibalism.jpg'>
-    <img src='http://local-static3.forum-files.fobby.net/forum_attachments/0016/9838/lolcat_what.jpg'>
-    <img src='http://newsimg.ngfiles.com/80000/80323_Lolcat4.jpg'>
+  <div id='container'>
+    <div class='example'>
+      <h1>Making $ work for Prototype and jQuery</h1>
+      <p>The difference between Prototype's $ method and jQuery's is that jQuery's takes a full css selector whereas Prototype's accepts a id as a string without any CSS selector syntax. So, in order to do something like:</p>
+<pre>
+$('#foo').show();
+</pre>
+
+      <p>and have it work with either library, you need to extend Prototype's $ method like this:</p>
+<pre>
+$ = (function(old$) {
+  return function(element) {
+    element = typeof element == 'string'
+      ? element.replace('#', '') 
+      : element;
+    return old$(element);
+  }
+})($);
+</pre>
+    </div>
   </div>
 </body> 
 

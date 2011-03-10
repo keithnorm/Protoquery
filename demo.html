@@ -1,43 +1,103 @@
 <!DOCTYPE html> 
 <html> 
 <head> 
-  <title>Fake DiggBar</title> 
-  <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js'></script>
+  <title>Protoquery!</title> 
+  <script type='text/javascript' src='lib/jquery.js'></script>
   <script type='text/javascript' src='underscore.js'></script>
   <script type='text/javascript' src='protoquery.js'></script>
   <script type='text/javascript'>
-
-
     $(function() {
-        $('img').each(function(i, el) {
-          //console.log(el);
-        });
+      //demo 1
+      $('#demo1').insert({bottom: 'this is some inserted text'});
+      var p = new Element('p', {
+        'class': 'some_class'
+      }).update('hi everybody!');
 
-        new Ajax.Request('/protoquery/demo.html', {
-          onComplete: function(response) {
-            //console.log(response.responseText);
-          }
-        });
+      // demo 2
+      $('#demo2').insert(p);
+
+      // demo 3
+      new Ajax.Request('response.html', {
+        onSuccess: function(transport) {
+          $('#demo3').insert(transport.responseText);
+        }
+      });
+            
     });
-     
   </script>
   <style type="text/css" media="all"> 
-    #slideshow img:first-child {
-      display: none;
+    body {
+      background-color: #B8B8AF;
+      font-family: Helvetica;
+    }
+    #container {
+      width: 500px;
+      margin: 0 auto;
     }
 
-    #slideshow img {
-      display: none;
+    .example {
+      padding: 20px;
+      background: #f1f1f1;
+      margin-bottom: 20px;
     }
   </style> 
 </head> 
 <body> 
-  <div id='slideshow'>
-    <img src='http://weblogs.hitwise.com/robin-goad/lolcats.png'>
-    <img src='http://icanhascheezburger.files.wordpress.com/2007/10/lolcats-funny-pictures-surprise-cannibalism.jpg'>
-    <img src='http://icanhascheezburger.files.wordpress.com/2007/10/lolcats-funny-pictures-surprise-cannibalism.jpg'>
-    <img src='http://local-static3.forum-files.fobby.net/forum_attachments/0016/9838/lolcat_what.jpg'>
-    <img src='http://newsimg.ngfiles.com/80000/80323_Lolcat4.jpg'>
+  <div id='container'>
+    <div class='example' id='demo1'>
+      <h1>Basic Prototype element methods</h1>
+<pre>
+$('#demo1').insert({bottom: 'this is some inserted text'});
+</pre>
+    </div>
+
+    <div class='example' id='demo2'>
+      <h1>new Element()</h1>
+<pre>
+var p = new Element('p', {
+  'class': 'some_class'
+}
+}).update('hi everybody!');
+
+$('#demo2').insert(p);
+</pre>
+    </div>
+
+    <div class='example' id='demo3'>
+      <h1>new Ajax.Request</h1>
+<pre>
+new Ajax.Request('response.html', {
+  onSuccess: function(transport) {
+    $('#demo3').insert(transport.responseText);
+  }
+});
+</pre>
+    </div>
+
+    <div class='example'>
+      <h1>Array extensions</h1>
+
+<pre>
+[100, 300, 400, 200].max();
+</pre>
+<pre>
+[{name: 'jack'}, {name: 'jill'}].map(
+  function(obj, i) { 
+    return obj.name;
+  });
+
+=> ['jack', 'jill']
+</pre>
+
+Or...
+
+<pre>
+[{name: 'jack'}, {name: 'jill'}].pluck('name');
+
+=> ['jack', 'jill']
+</pre>
+      
+    </div>
   </div>
 </body> 
 
